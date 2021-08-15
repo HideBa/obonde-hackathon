@@ -215,7 +215,7 @@ export default {
       this.ctx.font = "10px 'ゴシック'";
       this.ctx.textAlign = "left";
       this.ctx.textBaseline = "top";
-      this.ctx.fillText(message, positionX, positionY);
+      this.ctx.fillText(message, x, y);
       };
       return fireSeed;
     },
