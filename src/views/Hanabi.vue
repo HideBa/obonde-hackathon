@@ -9,6 +9,7 @@
   overflow: hidden;
   background-image: url("https://hackathon-20210815.s3.ap-northeast-1.amazonaws.com/206_generated.jpg");
   background-repeat: no-repeat;
+  background-size: 100%;
 }
 #canvas {
   height: 75%;
