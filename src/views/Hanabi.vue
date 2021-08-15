@@ -1,15 +1,67 @@
 <style scoped>
 .canvasBox {
-  width: 100%;
+  width: auto;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
   overflow: hidden;
   background-image: url("https://hackathon-20210815.s3.ap-northeast-1.amazonaws.com/206_generated.jpg");
+  background-repeat: no-repeat;
 }
 #canvas {
   height: 80%;
+}
+
+.btn-submit {
+  width: 200px;
+  height: 50px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid #aaa;
+  background-image: none;
+  background-color: #ff6633;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+.btn-submit:active {
+  border-bottom: none;
+  background-color: #888;
+}
+
+.message {
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.colorSelect {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-right: 5px;
+  /* background: linear-gradient(-135deg, #e4a972, #9941d8); */
+}
+
+.uchiake {
+  font-size: 100px;
+  z-index: 7;
+  margin-top: 10px;
+  /* color: #1e00ff; */
+  /* text-shadow: 3px 3px 1px #000; */
+  background: -webkit-linear-gradient(0deg, #da9c40, #7030ad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "YuMincho";
+  opacity: 0.5;
 }
 </style>
 
@@ -22,9 +74,10 @@
     :boxHeight="'100%'"
     :boxWidth="'100%'"
   >
+    <div class="uchiake">うちあけ花火</div>
     <canvas id="canvas"></canvas>
     <form @submit.prevent="SendMessage">
-      <select v-model="selected" style="margin-right: 5px">
+      <select v-model="selected" class="colorSelect">
         <option
           v-for="option in options"
           v-bind:value="option.value"
@@ -36,9 +89,10 @@
       <input
         type="text"
         v-model="inputMessage"
-        placeholder="Write a message..."
+        placeholder=" Write a message..."
+        class="message"
       />
-      <input type="submit" value="Send" />
+      <input type="submit" value="Fire!" class="btn-submit" />
     </form>
   </div>
 </template>
