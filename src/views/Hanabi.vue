@@ -54,7 +54,6 @@
 
 .input-form {
   display: flex;
-  position: absolute;
   justify-content: center;
 }
 
