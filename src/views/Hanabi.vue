@@ -99,6 +99,7 @@
 
 <script>
 import db from "./db";
+const widthList = [100, 200, 300, 400];
 export default {
   props: ["boxHeight", "boxWidth"],
   data() {
@@ -143,6 +144,7 @@ export default {
   watch: {
     messages: function (newVal, oldVal) {
       if (newVal.length > oldVal.length) {
+        console.log("aaaa");
         const latest = newVal.slice(-1)[0];
         this.Fire(latest.color, latest.content);
       }
@@ -281,7 +283,7 @@ export default {
       this.canvas.height = this.height;
     },
     Fire(color, message) {
-      const x = this.randomInt(20, this.width - 20);
+    const x = widthList[this.randomInt(0, 3)]
       const seed = this.Seed(x, this.height - 20, this.randomInt(175, 185), [
         color,
         "100%",
