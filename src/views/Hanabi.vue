@@ -11,7 +11,7 @@
   background-repeat: no-repeat;
 }
 #canvas {
-  height: 80%;
+  height: 75%;
 }
 
 .btn-submit {
