@@ -51,6 +51,12 @@
   /* background: linear-gradient(-135deg, #e4a972, #9941d8); */
 }
 
+.input-form {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+}
+
 .uchiake {
   font-size: 100px;
   z-index: 7;
@@ -60,7 +66,7 @@
   background: -webkit-linear-gradient(0deg, #da9c40, #7030ad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: "YuMincho";
+  font-family: "YuMincho", "游明朝";
   opacity: 0.5;
 }
 </style>
@@ -77,6 +83,7 @@
     <div class="uchiake">うちあけ花火</div>
     <canvas id="canvas"></canvas>
     <form @submit.prevent="SendMessage">
+      <div class="input-form">
       <select v-model="selected" class="colorSelect">
         <option
           v-for="option in options"
@@ -93,6 +100,7 @@
         class="message"
       />
       <input type="submit" value="Fire!" class="btn-submit" />
+      </div>
     </form>
   </div>
 </template>
@@ -268,7 +276,7 @@ export default {
         self.circle(positionX, positionY, radius);
         self.ctx.fill();
          this.ctx.fillStyle = finalColor;
-      this.ctx.font = "10px 'ゴシック'";
+      this.ctx.font = "20px 'ゴシック'";
       this.ctx.textAlign = "left";
       this.ctx.textBaseline = "top";
       this.ctx.fillText(message, x, y);
