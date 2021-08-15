@@ -88,10 +88,9 @@ export default {
   },
   watch: {
     messages: function (newVal, oldVal) {
-      //   console.log(newVal, oldVal);
       if (newVal.length > oldVal.length) {
         const latest = newVal.slice(-1)[0];
-        this.Fire(latest.color);
+        this.Fire(latest.color, latest.content);
       }
     },
   },
@@ -134,7 +133,7 @@ export default {
         this.seedAmount += 1;
       }
     },
-    Seed(x, y, angle, color) {
+    Seed(x, y, angle, color, message) {
       const self = this;
       const acceleration = 0.05;
       const radius = 3;
@@ -168,7 +167,8 @@ export default {
             fireSeed.x,
             fireSeed.y,
             i + self.randomInt(-200, 200) / 100,
-            [h, s, l]
+            [h, s, l],
+            message
           );
           self.particles.push(particle);
         }
@@ -176,7 +176,7 @@ export default {
       fireSeed.dead = dead;
       return fireSeed;
     },
-    Firework(x, y, angle, color) {
+    Firework(x, y, angle, color, message) {
       const self = this;
       const fireSeed = {};
       const angleOffset = self.randomInt(-20, 20) / 100;
@@ -211,6 +211,11 @@ export default {
         self.ctx.fillStyle = finalColor;
         self.circle(positionX, positionY, radius);
         self.ctx.fill();
+         this.ctx.fillStyle = finalColor;
+      this.ctx.font = "10px 'ゴシック'";
+      this.ctx.textAlign = "left";
+      this.ctx.textBaseline = "top";
+      this.ctx.fillText(message, positionX, positionY);
       };
       return fireSeed;
     },
@@ -221,13 +226,13 @@ export default {
       this.canvas.width = this.width;
       this.canvas.height = this.height;
     },
-    Fire(color) {
+    Fire(color, message) {
       const x = this.randomInt(20, this.width - 20);
       const seed = this.Seed(x, this.height - 20, this.randomInt(175, 185), [
         color,
         "100%",
         "50%",
-      ]);
+      ], message);
       this.seeds.push(seed);
     },
     getMessages() {
@@ -257,7 +262,6 @@ export default {
         color: this.selected,
       };
 
-      console.log(message);
 
       messagesRef.push(message);
       this.inputMessage = "";
